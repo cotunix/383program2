@@ -1,9 +1,9 @@
 package server;
+
 import java.util.*;
 import java.io.*;
-import java.sql.*;
 
-public class MazeServer {
+class MazeServer {
 	
 	public static boolean mazeExists;
 	public static char[][] maze;
