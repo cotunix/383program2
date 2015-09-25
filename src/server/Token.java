@@ -10,7 +10,7 @@ public class Token {
 	public Token(String password) {
 		
 		this.password = password;
-		Integer userNum = rd.nextInt(65530) * rd.nextInt(65530);
+		Integer userNum = rd.nextInt(Integer.MAX_VALUE);
 		
 		userToken = userNum.toString();
 		
