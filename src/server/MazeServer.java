@@ -4,14 +4,14 @@ import java.sql.SQLException;
 import java.util.*;
 import java.io.*;
 
-class MazeServer {
+public class MazeServer {
 
-	public static boolean mazeExists;
+	public static boolean mazeExists = false;
 	public static char[][] maze;
 	public static final int MAZESIZE = 9;
-	public static int startX, startY;
+	public static int startX = 0, startY = 0;
 	public static Map<String, User> users = new HashMap<String, User>();
-	private static DB db = new DB();
+	public static DB db = new DB();
 
 	public String connect(String username, String password) {
 		if (!mazeExists)
@@ -43,9 +43,12 @@ class MazeServer {
 	public String close(String token, String password) {
 		if (users.containsKey(token)) {
 			User tempUser = users.get(token);
-			if (tempUser.password == password) {
+			System.out.println(tempUser.password);
+			System.out.println(password);
+			if (tempUser.password.equals(password)) {
 				try {
 					db.deleteUser(tempUser.username);
+					users.remove(token);
 					return "OK";
 				} catch (SQLException e) {
 					System.err.println("Error deleting user from database.");

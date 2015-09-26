@@ -49,7 +49,7 @@ public class DB {
 	}
 	
 	public void deleteUser(String user) throws SQLException {
-		String sql = "DELETE FROM maze WHERE name = " + "\"" + user + "\"";
+		String sql = "DELETE FROM maze WHERE user = " + "\"" + user + "\"";
 		state.executeUpdate(sql);
 	}
 	

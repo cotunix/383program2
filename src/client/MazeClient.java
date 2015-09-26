@@ -49,8 +49,8 @@ public class MazeClient {
 						String ret = close(password);
 						if (ret.equals("OK")) {
 							System.out
-									.println("Congratulation, you win! Closing in 5 seconds.");
-							Thread.sleep(5000);
+									.println("Congratulation, you win! Closing.");
+							Thread.sleep(1000);
 							System.exit(0);
 						} else {
 							System.err.println(ret);
@@ -59,8 +59,8 @@ public class MazeClient {
 						String ret = close(password);
 						if (ret.equals("OK")) {
 							System.out
-									.println("You fell in a pit and died. RIP. Closing in 5 seconds.");
-							Thread.sleep(5000);
+									.println("You fell in a pit and died. RIP. Closing.");
+							Thread.sleep(1000);
 							System.exit(0);
 						}
 					} else if (move.equals("INVALID"))
@@ -90,8 +90,10 @@ public class MazeClient {
 					if (ret.equals("OK")) {
 						System.out
 								.println("Your account will be deleted, program will exit");
+						Thread.sleep(1000);
+						System.exit(0);
 					} else {
-						System.err.println("Failed to close.");
+						System.err.println("Failed to close." + ret);
 					}
 					break;
 				}
