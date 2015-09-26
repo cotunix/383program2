@@ -112,6 +112,7 @@ public class MazeServer {
 		try {
 			if (maze[newX][newY] == 'E') {
 				db.finished(user);
+				System.out.println("finish");
 				return "DONE";
 			} else if (maze[newX][newY] == 'P') {
 				db.finished(user);

@@ -162,7 +162,7 @@ public class MazeClient {
 		return ret;
 	}
 
-X}
+
 
 	public static void main(String[] args) {
 		if (args.length != 2) {
