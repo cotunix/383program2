@@ -44,8 +44,6 @@ public class MazeServer {
 	public String close(String token, String password) {
 		if (users.containsKey(token)) {
 			User tempUser = users.get(token);
-			System.out.println(tempUser.password);
-			System.out.println(password);
 			if (tempUser.password.equals(password)) {
 				try {
 					db.deleteUser(tempUser.username);
@@ -112,7 +110,6 @@ public class MazeServer {
 		try {
 			if (maze[newX][newY] == 'E') {
 				db.finished(user);
-				System.out.println("finish");
 				return "DONE";
 			} else if (maze[newX][newY] == 'P') {
 				db.finished(user);
