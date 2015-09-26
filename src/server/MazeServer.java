@@ -53,9 +53,9 @@ class MazeServer {
 				}
 
 			} else
-				return "PASSWORD FAIL";
+				return "Password Invalid";
 		} else {
-			return "TOKEN FAIL";
+			return "Token Invalid";
 		}
 
 	}
