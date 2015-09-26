@@ -129,6 +129,52 @@ public class MazeServer {
 		}
 		return "OK";
 	}
+	
+	public String get() {
+		try {
+			ResultSet rs = db.getMaze();
+			StringBuilder sb = new StringBuilder();
+			//Thanks to Craig Dazey for suggesting use of StringBuilder
+			sb.append("<?xml version=1.0>\n");
+			sb.append("<maze>\n");
+			while(rs.next()) {
+				sb.append("<user>\n");
+				
+				sb.append("<name>");
+				sb.append(rs.getString("name"));
+				sb.append("</name>\n");
+				
+				sb.append("<x>");
+				sb.append(rs.getInt("x"));
+				sb.append("</x>\n");
+				
+				sb.append("<y>");
+				sb.append(rs.getInt("y"));
+				sb.append("</y>\n");
+				
+				sb.append("<lastSeen>");
+				sb.append(rs.getString("lastSeen"));
+				sb.append("</lastSeen>\n");
+				
+				sb.append("<moves>");
+				sb.append(rs.getInt("moves"));
+				sb.append("</moves>\n");
+				
+				sb.append("<state>");
+				sb.append(rs.getString("state"));
+				sb.append("</state>\n");
+				
+				sb.append("</user>\n");
+			}
+			sb.append("</maze>\n");
+			
+			return sb.toString();
+			
+		} catch (SQLException e) {
+			return "-1";
+		}
+		
+	}
 
 	private String generateToken() {
 		Random rd = new Random();
@@ -179,8 +225,13 @@ public class MazeServer {
 					ret[i] = maze[x][y + 1];
 				if (i == 3)
 					ret[i] = maze[x - 1][y];
+				if (ret[i] == 'X')
+					ret[i] = 'W';
+				if (ret[i] == ' ' || ret[i] == 'P')
+					ret[i] = 'O';
+				
 			} catch (ArrayIndexOutOfBoundsException e) {
-				ret[i] = 'X';
+				ret[i] = 'W';
 			}
 		}
 		return ret;
