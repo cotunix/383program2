@@ -1,3 +1,15 @@
+
+/*
+   Kyle Richardson
+   CSE383-f15
+   Program 2
+   
+   Maze Project Server startup
+   
+   NOTE ** Code directly taken from previous lab. Credit to Scott Campbell **
+   */
+
+
 package server;
 
 import org.apache.xmlrpc.webserver.*;

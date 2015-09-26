@@ -1,3 +1,16 @@
+
+/*
+   Kyle Richardson
+   CSE383-f15
+   Program 2
+   
+   Maze Project Database Writing
+   
+   Class used to handle all queries to the database in the maze project
+   
+   NOTE ** Large portion of code re-used from previous labs **
+   */
+
 package server;
 
 import java.sql.*;

@@ -1,3 +1,14 @@
+
+/*
+   Kyle Richardson
+   CSE383-f15
+   Program 2
+   
+   Maze Project User class
+   
+   Simple class to store username and password
+   */
+
 package server;
 
 

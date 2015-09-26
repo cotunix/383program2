@@ -1,3 +1,14 @@
+
+/*
+   Kyle Richardson
+   CSE383-f15
+   Program 2
+   
+   Maze Project Client
+   
+   NOTE ** Large portion of code re-used from previous labs **
+   */
+
 package server;
 
 import java.sql.ResultSet;

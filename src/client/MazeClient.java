@@ -1,3 +1,16 @@
+
+/*
+   Kyle Richardson
+   CSE383-f15
+   Program 2
+   
+   Maze Project Client
+   
+   Handles client operations of maze
+   
+   NOTE ** Large portion of code re-used from previous labs **
+   */
+
 package client;
 
 import java.net.*;
@@ -96,6 +109,7 @@ public class MazeClient {
 						System.err.println("Failed to close." + ret);
 					}
 					break;
+				
 				}
 			}
 
