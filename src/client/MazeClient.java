@@ -1,7 +1,6 @@
 package client;
 
 import java.net.*;
-import java.sql.SQLException;
 import java.util.*;
 import java.io.*;
 
@@ -46,21 +45,60 @@ public class MazeClient {
 				case "W":
 				case "E":
 					String move = move(input);
-					if (move.equals("Done")){
+					if (move.equals("Done")) {
 						String ret = close(password);
-						if(ret.equals("OK")){
-							System.out.println("Congratulation, you win!");
+						if (ret.equals("OK")) {
+							System.out
+									.println("Congratulation, you win! Closing in 5 seconds.");
+							Thread.sleep(5000);
 							System.exit(0);
 						} else {
 							System.err.println(ret);
 						}
+					} else if (move.equals("DIED")) {
+						String ret = close(password);
+						if (ret.equals("OK")) {
+							System.out
+									.println("You fell in a pit and died. RIP. Closing in 5 seconds.");
+							Thread.sleep(5000);
+							System.exit(0);
+						}
+					} else if (move.equals("INVALID"))
+						System.err.println("Invalid move.");
+					else if (move.equals("OK")) {
+						l = look();
+						if (l.equals("DB FAIL")) {
+							throw new XmlRpcException(
+									"Error getting coordinates for user: In look()(User not active OR user not found");
+						}
+						System.out.println(l);
 					}
-					
+					break;
+				case "G":
+					String g = get();
+					System.out.println(g);
+					break;
+				case "Q":
+					System.out.println("Exiting. Goodbye!");
+					System.exit(0);
+					break;
+				case "C":
+					System.out
+							.println("Enter password(Confirm deletion of account)");
+					String p = in.nextLine();
+					String ret = close(p);
+					if (ret.equals("OK")) {
+						System.out
+								.println("Your account will be deleted, program will exit");
+					} else {
+						System.err.println("Failed to close.");
+					}
+					break;
 				}
 			}
 
 		} catch (Exception e) {
-
+			System.err.println("Error in main loop " + e);
 		}
 
 	}
@@ -120,5 +158,28 @@ public class MazeClient {
 		Object[] params = new Object[] { token, pass };
 		String ret = (String) xmlRPCclient.execute("mazeserver.close", params);
 		return ret;
+	}
+
+	public static void main(String[] args) {
+		if (args.length != 2) {
+			System.err.println("Usage:  java AddMessage <HOST> <PORT>");
+		}
+
+		int port = 0;
+		try {
+			port = Integer.parseInt(args[1]);
+		} catch (Exception err) {
+			System.err.println("Usage:  java AddMessage <HOST> <PORT>");
+			
+		}
+
+		try {
+			MazeClient client = new MazeClient(args[0], port);
+			client.run();
+		} catch (Exception err) {
+			System.err.println("Error initializing client: " + err);
+
+		}
+
 	}
 }
