@@ -163,7 +163,7 @@ public class MazeServer {
 			return sb.toString();
 
 		} catch (SQLException e) {
-			return "SQL FAIL";
+			return "SQL FAIL" + e;
 		}
 
 	}

@@ -61,6 +61,7 @@ public class DB {
 
 	public ResultSet getMaze() throws SQLException {
 		String query = "SELECT * FROM maze";
-		return state.executeQuery(query);
+		ResultSet rs = state.executeQuery(query);
+		return rs;
 	}
 }
