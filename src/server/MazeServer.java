@@ -117,7 +117,7 @@ public class MazeServer {
 			} else if (maze[newX][newY] == 'P') {
 				db.finished(user);
 				return "DIED";
-			} else if (maze[newX][newY] != ' ')
+			} else if (maze[newX][newY] != ' ' || maze[newX][newY] != 'S')
 				return "INVALID";
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return "INVALID";
