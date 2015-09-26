@@ -45,7 +45,7 @@ public class MazeClient {
 				case "W":
 				case "E":
 					String move = move(input);
-					if (move.equals("Done")) {
+					if (move.equals("DONE")) {
 						String ret = close(password);
 						if (ret.equals("OK")) {
 							System.out
@@ -162,6 +162,8 @@ public class MazeClient {
 		return ret;
 	}
 
+X}
+
 	public static void main(String[] args) {
 		if (args.length != 2) {
 			System.err.println("Usage:  java AddMessage <HOST> <PORT>");
@@ -172,7 +174,7 @@ public class MazeClient {
 			port = Integer.parseInt(args[1]);
 		} catch (Exception err) {
 			System.err.println("Usage:  java AddMessage <HOST> <PORT>");
-			
+
 		}
 
 		try {
