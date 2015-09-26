@@ -139,7 +139,7 @@ public class MazeServer {
 			while (rs.next()) {
 				sb.append("<user>\n");
 				sb.append("<name>");
-				sb.append(rs.getString("name"));
+				sb.append(rs.getString("user"));
 				sb.append("</name>\n");
 				sb.append("<x>");
 				sb.append(rs.getInt("x"));
