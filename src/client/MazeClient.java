@@ -127,7 +127,7 @@ public class MazeClient {
 		System.out.println("N|E|S|W to move.");
 		System.out.println("G to get maze.");
 		System.out.println("Q to quit.");
-		System.out.println("C to quit and end session.\n");
+		System.out.println("C to quit and end session.");
 	}
 
 	public String move(String direction) throws XmlRpcException {
