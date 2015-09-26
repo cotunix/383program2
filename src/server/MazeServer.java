@@ -114,7 +114,7 @@ public class MazeServer {
 			} else if (maze[newX][newY] == 'P') {
 				db.finished(user);
 				return "DIED";
-			} else if (maze[newX][newY] != ' ' || maze[newX][newY] != 'S')
+			} else if (maze[newX][newY] != ' ' && maze[newX][newY] != 'S')
 				return "INVALID";
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return "INVALID";
@@ -128,51 +128,44 @@ public class MazeServer {
 		}
 		return "OK";
 	}
-	
+
 	public String get() {
 		try {
 			ResultSet rs = db.getMaze();
 			StringBuilder sb = new StringBuilder();
-			//Thanks to Craig Dazey for suggesting use of StringBuilder
+			// Thanks to Craig Dazey for suggesting use of StringBuilder
 			sb.append("<?xml version=1.0>\n");
 			sb.append("<maze>\n");
-			while(rs.next()) {
+			while (rs.next()) {
 				sb.append("<user>\n");
-				
 				sb.append("<name>");
 				sb.append(rs.getString("name"));
 				sb.append("</name>\n");
-				
 				sb.append("<x>");
 				sb.append(rs.getInt("x"));
 				sb.append("</x>\n");
-				
 				sb.append("<y>");
 				sb.append(rs.getInt("y"));
 				sb.append("</y>\n");
-				
 				sb.append("<lastSeen>");
 				sb.append(rs.getString("lastSeen"));
 				sb.append("</lastSeen>\n");
-				
 				sb.append("<moves>");
 				sb.append(rs.getInt("moves"));
 				sb.append("</moves>\n");
-				
 				sb.append("<state>");
 				sb.append(rs.getString("state"));
 				sb.append("</state>\n");
-				
 				sb.append("</user>\n");
 			}
 			sb.append("</maze>\n");
-			
+
 			return sb.toString();
-			
+
 		} catch (SQLException e) {
-			return "-1";
+			return "SQL FAIL";
 		}
-		
+
 	}
 
 	private String generateToken() {
@@ -228,7 +221,7 @@ public class MazeServer {
 					ret[i] = 'W';
 				if (ret[i] == ' ' || ret[i] == 'P')
 					ret[i] = 'O';
-				
+
 			} catch (ArrayIndexOutOfBoundsException e) {
 				ret[i] = 'W';
 			}
