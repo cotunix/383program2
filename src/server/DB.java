@@ -5,7 +5,7 @@ import java.sql.*;
 public class DB {
 	private String url = "jdbc:mysql://localhost/mazedata";
 	private Connection conn = null;
-	private String user = "user";
+	private String user = "mazeuser";
 	private String pwd = "383";
 	private Statement state;
 	
@@ -25,7 +25,7 @@ public class DB {
 
 	public void addUser(String user, int x, int y) throws SQLException {
 		String query = "INSERT INTO maze VALUES(" + "\"" + user + "\", " + x
-				+ ", " + y + ", " + System.currentTimeMillis() / 1000L + ", "
+				+ ", " + y + ", " + System.currentTimeMillis() / 1000 + ", "
 				+ 0 + ", " + "'ACTIVE')";
 		state.executeUpdate(query);
 	}
